@@ -1,9 +1,8 @@
 #include <iostream>
 #include <ctime>
 using namespace std;
-int a, b, i, j;
-void box(char spaces[3][3], char me, char computer);
 
+void box(char spaces[3][3], char me, char computer);
 int pos();
 
 int main()
@@ -22,237 +21,118 @@ int main()
 int pos()
 {
     srand(time(0));
-    a = (rand() % 9) + 1;
-
-    return a;
+    return (rand() % 9) + 1;
 }
 
 void box(char spaces[3][3], char me, char computer)
 {
+    int b, i, j, count = 0, break1 = 0;
     do
     {
-        cout << "enter your position" << endl;
+        cout << "Enter your position (1-9): ";
         cin >> b;
-        switch (b)
-        {
-        case 1:
-            i = 0;
-            j = 0;
-            break;
 
-        case 2:
-            i = 0;
-            j = 1;
-            break;
-        case 3:
-            i = 0;
-            j = 2;
-            break;
-        case 4:
-            i = 1;
-            j = 0;
-            break;
-        case 5:
-            i = 1;
-            j = 1;
-            break;
-        case 6:
-            i = 1;
-            j = 2;
-            break;
-        case 7:
-            i = 2;
-            j = 0;
-            break;
-        case 8:
-            i = 2;
-            j = 1;
-            break;
-        case 9:
-            i = 2;
-            j = 2;
-            break;
-        default:
-            cout << "error fix krle bhai " << endl;
-            break;
+        if (b < 1 || b > 9)
+        {
+            cout << "Invalid position. Please enter a number between 1 and 9." << endl;
+            continue;
         }
+
+        i = (b - 1) / 3;
+        j = (b - 1) % 3;
 
         if (spaces[i][j] == ' ')
         {
             spaces[i][j] = me;
+            count++;
         }
         else
         {
+            cout << "Position already occupied. Try again." << endl;
             continue;
         }
+        for (int m = 0; m < 3; m++)
+        {
+            if ((spaces[0][m] =='X')&&( spaces[1][m] =='X')&&( spaces[2][m] == 'X' ))
+            {
+                cout << "you win" << endl;
+                break1++;
 
+                break;
+            }
+
+            if ((spaces[m][0] =='X')&&( spaces[m][1] =='X')&&( spaces[m][2] == 'X'))
+            {
+                cout << "you win" << endl;
+
+                break1++;
+                break;
+            }
+        }
+
+        if (break1 >= 1)
+        {
+            break;
+        }
+
+        // for tie situation
+        if (count == 5)
+        {
+            cout << "Its a tie " << endl;
+            break;
+        }
+
+        // Computer's turn
         while (true)
         {
-            a = pos();
+            int a = pos();
+            i = (a - 1) / 3;
+            j = (a - 1) % 3;
 
-            switch (a)
+            if (spaces[i][j] == ' ')
             {
-            case 1:
-                i = 0;
-                j = 0;
+                spaces[i][j] = computer;
                 break;
-
-            case 2:
-                i = 0;
-                j = 1;
-                break;
-            case 3:
-                i = 0;
-                j = 2;
-                break;
-            case 4:
-                i = 1;
-                j = 0;
-                break;
-            case 5:
-                i = 1;
-                j = 1;
-                break;
-            case 6:
-                i = 1;
-                j = 2;
-                break;
-            case 7:
-                i = 2;
-                j = 0;
-                break;
-            case 8:
-                i = 2;
-                j = 1;
-                break;
-            case 9:
-                i = 2;
-                j = 2;
-                break;
-
-            default:
-                cout << "error fix krle bhai " << endl;
-                break;
-            }
-
-            if (i == 0 && j == 0)
-            {
-                if (spaces[i][j] == ' ')
-                {
-                    spaces[i][j] = computer;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            else if (i == 0 && j == 1)
-            {
-                if (spaces[i][j] == ' ')
-                {
-                    spaces[i][j] = computer;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            else if (i == 0 && j == 2)
-            {
-                if (spaces[i][j] == ' ')
-                {
-                    spaces[i][j] = computer;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            else if (i == 1 && j == 0)
-            {
-                if (spaces[i][j] == ' ')
-                {
-                    spaces[i][j] = computer;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            else if (i == 1 && j == 1)
-            {
-                if (spaces[i][j] == ' ')
-                {
-                    spaces[i][j] = computer;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            else if (i == 1 && j == 2)
-            {
-                if (spaces[i][j] == ' ')
-                {
-                    spaces[i][j] = computer;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            else if (i == 2 && j == 0)
-            {
-                if (spaces[i][j] == ' ')
-                {
-                    spaces[i][j] = computer;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            else if (i == 2 && j == 1)
-            {
-                if (spaces[i][j] == ' ')
-                {
-                    spaces[i][j] = computer;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            else if (i == 2 && j == 2)
-            {
-                if (spaces[i][j] == ' ')
-                {
-                    spaces[i][j] = computer;
-                    break;
-                }
-                else
-                {
-                    continue;
-                }
             }
         }
-        for (i = 0; i < 3; i++)
-
+        for (int u = 0; u < 3; u++)
         {
-            cout << "---------------------------------------------\n";
+            if ((spaces[0][u] =='O')&&( spaces[1][u] =='O')&&( spaces[2][u] == 'O'))
+            {
+                cout << "you lose" << endl;
+                break1++;
+                break;
+
+            }
+
+            if ((spaces[u][0] =='O')&&( spaces[u][1] =='O')&&( spaces[u][2] == 'O') )
+            {
+                cout << "you lose" << endl;
+                break1++;
+                break;
+            }
+        }
+        if (break1 >= 1)
+        {
+            break;
+        }
+
+        // Display the board
+        for (i = 0; i < 3; i++)
+        {
+            cout << "-------------\n";
             for (j = 0; j < 3; j++)
             {
-                cout << spaces[i][j] << '\t';
+
+                cout << "| " << spaces[i][j] << " ";
             }
-            cout << '\n';
+
+            cout << "|\n";
         }
-    } while (!(b > 0) || !(b < 8));
+        cout << "-------------\n";
+
+        // Check for game end conditions (to be implemented)
+        // For now, the loop breaks after each turn.
+
+    } while (true); // Change the condition based on game logic
 }
