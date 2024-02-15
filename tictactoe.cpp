@@ -149,8 +149,6 @@ void box(char spaces[3][3], char me, char computer)
         }
         cout << "-------------\n";
 
-        // Check for game end conditions (to be implemented)
-        // For now, the loop breaks after each turn.
-
+      
     } while (true); // Change the condition based on game logic
 }
