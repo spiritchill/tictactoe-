@@ -31,6 +31,7 @@ void box(char spaces[3][3], char me, char computer)
     {
         cout << "Enter your position (1-9): ";
         cin >> b;
+     
 
         if (b < 1 || b > 9)
         {
@@ -68,6 +69,14 @@ void box(char spaces[3][3], char me, char computer)
                 break1++;
                 break;
             }
+        }
+        if((spaces[0][0]=='X')&&(spaces[1][1]=='X')&&(spaces[2][2]=='X')){
+            cout<<"you win"<<endl;
+            break;
+        }
+        if((spaces[0][2]=='X')&&(spaces[1][1]=='X')&&(spaces[2][0]=='X')){
+            cout<<"you win"<<endl;
+            break;
         }
 
         if (break1 >= 1)
@@ -111,6 +120,15 @@ void box(char spaces[3][3], char me, char computer)
                 break1++;
                 break;
             }
+        }
+
+        if((spaces[0][0]=='O')&&(spaces[1][1]=='O')&&(spaces[2][2]=='O')){
+            cout<<"you lose"<<endl;
+            break;
+        }
+        if((spaces[0][2]=='O')&&(spaces[1][1]=='O')&&(spaces[2][0]=='O')){
+            cout<<"you lose"<<endl;
+            break;
         }
         if (break1 >= 1)
         {
