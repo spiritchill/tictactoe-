@@ -1,7 +1,10 @@
+
 #include <iostream>
 #include <ctime>
 using namespace std;
 
+
+/* program starts */
 void box(char spaces[3][3], char me, char computer);
 int pos();
 
