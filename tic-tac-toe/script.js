@@ -1,5 +1,5 @@
 console.log("welcome to tic tac toe")
-let ting = new Audio("ding.wav");
+
 let ding =  new Audio("click.wav");
 let winaudio = new Audio("win.wav");
 
